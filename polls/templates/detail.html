@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My poll page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+</head>
+<body>
+    <h1>{{page_title}}</h1>
+    <form>
+    {% for question in question_list %}
+        <h2>{{question.id}}. {{question.text}}</h2>
+        {% for choice in question.choice_set.all %}
+            <input type="radio" name="{{ question.id }}" value="{{choice.value}}"> {{choice.text}} <br>
+        {% endfor %}
+    {% endfor %}
+        <input type="submit">
+    </form>
+</body>
+</html>

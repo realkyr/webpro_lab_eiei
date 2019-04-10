@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My poll page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+</head>
+<body>
+    <h1>{{page_title}}</h1>
+    {% for poll in poll_list %}
+        <li>{{poll.id}} {{poll.title}} (จำนวนคำถาม: {{poll.question_count}}) <a href="{% url 'polls_detail' poll.id %}">details</a></li>
+    {% endfor %}
+</body>
+</html>

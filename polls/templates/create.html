@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CREATE NEW POLL</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <style>
+        .errorlist {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Create Poll</h1>
+    <form method="POST" action="{% url 'create_poll' %}">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <p>
+            {{ form.non_field_errors }}
+        </p>
+        {% endif %}
+        <div class="form-group">
+            <span style="color: red">{{ form.title.errors }}</span>
+            <label for="{{ form.title.id_forlabel }}">{{form.title.label}}</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <span style="color: red">{{ form.email.errors }}</span>
+            <label for="{{ form.email.id_forlabel }}">{{form.email.label}}</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <span style="color: red">{{ form.no_questions.errors }}</span>
+            <label for="{{ form.no_questions.id_forlabel }}">{{form.no_questions.label}}</label>
+            {{ form.no_questions }}
+        </div>
+        <div class="form-group">
+            <span style="color: red">{{ form.start_date.errors }}</span>
+            <label for="{{ form.start_date.id_forlabel }}">{{form.start_date.label}}</label>
+            {{ form.start_date }}
+        </div>
+        <div class="form-group">
+            <span style="color: red">{{ form.end_date.errors }}</span>
+            <label for="{{ form.end_date.id_forlabel }}">{{form.end_date.label}}</label>
+            {{ form.end_date }}
+        </div>
+        <input class="btn btn-primary" type="submit" value="create">
+    </form>
+</div>
+
+</body>
+</html>
